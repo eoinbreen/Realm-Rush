@@ -11,7 +11,7 @@ public class EnemyMover : MonoBehaviour
     void Start()
     {
         
-        StartCoroutine(FollowPath());
+        StartCoroutine(FollowPath());//Makes enemy wait for a certain length of time before each iteration of foreach loop
        
     }
 
