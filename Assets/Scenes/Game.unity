@@ -2068,7 +2068,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5040643765344069697, guid: b940df629b09f434dbb9fd487257db6c, type: 3}
       propertyPath: m_Name
-      value: Ram
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5199932422089098766, guid: b940df629b09f434dbb9fd487257db6c, type: 3}
       propertyPath: speed
