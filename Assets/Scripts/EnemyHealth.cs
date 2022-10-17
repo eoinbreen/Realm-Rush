@@ -6,7 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int maxHP = 5;
     int currentHP;
-    private void Start()
+    private void OnEnable()
     {
         currentHP = maxHP;
     }
@@ -17,11 +17,10 @@ public class EnemyHealth : MonoBehaviour
     void ProcessHit()
     {
         currentHP--;
-        print(name + " HP is now " + currentHP);
 
         if(currentHP <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
