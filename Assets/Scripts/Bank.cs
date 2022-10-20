@@ -17,7 +17,7 @@ public class Bank : MonoBehaviour
     {
         currentBalance = startingBalance;
 
-        bankText.text = "Gold : " + currentBalance;
+        UpdateDisplay();
     }
 
   
@@ -25,12 +25,17 @@ public class Bank : MonoBehaviour
     public void Transaction(float amount)
     {
         currentBalance += amount;
-        bankText.text = "Gold : " + currentBalance;
+        UpdateDisplay();
 
         if (currentBalance < 0)
         {
             reloadScene();
         }
+    }
+
+    void UpdateDisplay()
+    {
+        bankText.text = "Gold : " + currentBalance;
     }
 
     void reloadScene()
