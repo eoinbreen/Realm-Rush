@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] Node node;
+    [SerializeField] Vector2Int gridSize = new Vector2Int(21,11);
+    Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        print(node.coordinates);
-        print(node.isWalkable);
+        CreateGrid();
     }
 
-    // Update is called once per frame
-    void Update()
+    void CreateGrid()
     {
-        
+        for (int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                Vector2Int coordinates = new Vector2Int(x, y);
+                grid.Add(coordinates, new Node(coordinates, true));
+                print(grid[coordinates].coordinates + " = " + grid[coordinates].isWalkable);
+            }
+        }
     }
 }
