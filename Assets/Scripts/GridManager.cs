@@ -24,4 +24,13 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    public Node GetNode(Vector2Int coordinates)
+    {
+        if ( grid.ContainsKey(coordinates))
+        {
+            return grid[coordinates];
+        }
+         return null;
+    }
 }
