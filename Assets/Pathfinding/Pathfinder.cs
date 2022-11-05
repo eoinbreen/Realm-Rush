@@ -25,15 +25,18 @@ public class Pathfinder : MonoBehaviour
         {
             grid = gridManager.Grid;
         }
-        startNode = new Node(startCoordinates, true);
-        destinationNode = new Node(destinationCoordinates, true);
+        
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
+        startNode = gridManager.Grid[startCoordinates];
+        destinationNode = gridManager.Grid[destinationCoordinates];
+
         BreadthFirstSearch();
+        BuildPath();
     }
 
     void ExploreNeighbours()
@@ -53,6 +56,7 @@ public class Pathfinder : MonoBehaviour
         {
             if(!reached.ContainsKey(neighbour.coordinates) && neighbour.isWalkable)
             {
+                neighbour.connectedTo = currentSearchNode;
                 reached.Add(neighbour.coordinates, neighbour);
                 frontier.Enqueue(neighbour);
             }
@@ -79,5 +83,22 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
+    List<Node> BuildPath()
+    {
+        List<Node> path = new List<Node>();
+        Node currentNode = destinationNode;
 
+        path.Add(currentNode);
+        currentNode.isPath = true;
+
+        while(currentNode.connectedTo != null)
+        {
+            currentNode = currentNode.connectedTo;
+            path.Add(currentNode);
+            currentNode.isPath = true;
+        }
+
+        path.Reverse();
+        return path;
+    }
 }
