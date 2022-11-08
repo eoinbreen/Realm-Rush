@@ -27,6 +27,9 @@ public class Pathfinder : MonoBehaviour
         if (gridManager != null)
         {
             grid = gridManager.Grid;
+            startNode = grid[startCoordinates];
+            destinationNode = grid[destinationCoordinates];
+           
         }
         
     }
@@ -35,9 +38,6 @@ public class Pathfinder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startNode = gridManager.Grid[startCoordinates];
-        destinationNode = gridManager.Grid[destinationCoordinates];
-
         GetNewPath();
     }
 
@@ -48,6 +48,7 @@ public class Pathfinder : MonoBehaviour
         return BuildPath();
     }
 
+    //Pathfinding algorithm - searches surrounding nodes of current search node
     void ExploreNeighbours()
     {
         List<Node> neighbours = new List<Node>();
@@ -73,8 +74,12 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
+    //Pathfinding algorithm - keeps exploring neighbours until destination node is found
     void BreadthFirstSearch()
     {
+        startNode.isWalkable = true;
+        destinationNode.isWalkable = true;
+
         frontier.Clear();
         reached.Clear();
         bool isRunning = true;
@@ -94,6 +99,8 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
+
+    //Builds Path by backtracking from destination node
     List<Node> BuildPath()
     {
         List<Node> path = new List<Node>();
@@ -113,6 +120,7 @@ public class Pathfinder : MonoBehaviour
         return path;
     }
 
+    //Make sure player does not block all possible paths to the destination
     public bool WillBlockPath(Vector2Int coordinates)
     {
         if (grid.ContainsKey(coordinates))
