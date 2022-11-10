@@ -9810,6 +9810,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1507734468}
     m_Modifications:
+    - target: {fileID: 4397940648848811460, guid: 9df67591802ae764798f839ed65005e0, type: 3}
+      propertyPath: isPlaceable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7951998302035319651, guid: 9df67591802ae764798f839ed65005e0, type: 3}
       propertyPath: m_text
       value: 9 , 3
@@ -21922,6 +21926,10 @@ PrefabInstance:
     - target: {fileID: 7987153494706159620, guid: 6e9d53bcd4e7a6e479f595b17d5743dd, type: 3}
       propertyPath: m_Name
       value: ObjectPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987153494706159621, guid: 6e9d53bcd4e7a6e479f595b17d5743dd, type: 3}
+      propertyPath: poolSize
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7987153494706159621, guid: 6e9d53bcd4e7a6e479f595b17d5743dd, type: 3}
       propertyPath: enemyWaitTime

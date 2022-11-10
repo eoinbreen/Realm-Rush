@@ -139,4 +139,9 @@ public class Pathfinder : MonoBehaviour
         }
         return false;
     }
+    public void notifyReceivers()
+    {
+        BroadcastMessage("RecalculatePath", SendMessageOptions.DontRequireReceiver);
+    }
+
 }

@@ -17,7 +17,7 @@ public class EnemyMover : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        FindPath();
+        RecalculatePath();
         ReturnToStart();
         StartCoroutine(FollowPath());//Makes enemy wait for a certain length of time before each iteration of foreach loop
        
@@ -29,7 +29,7 @@ public class EnemyMover : MonoBehaviour
         pathfinder = FindObjectOfType<Pathfinder>();
     }
 
-    void FindPath()
+    void RecalculatePath()
     {
         path.Clear();
         path = pathfinder.GetNewPath();
