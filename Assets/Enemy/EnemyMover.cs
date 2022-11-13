@@ -17,9 +17,8 @@ public class EnemyMover : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        RecalculatePath();
         ReturnToStart();
-        StartCoroutine(FollowPath());//Makes enemy wait for a certain length of time before each iteration of foreach loop
+        RecalculatePath(true);
        
     }
     private void Awake()
@@ -29,10 +28,22 @@ public class EnemyMover : MonoBehaviour
         pathfinder = FindObjectOfType<Pathfinder>();
     }
 
-    void RecalculatePath()
+    void RecalculatePath(bool resetPath)
     {
+        Vector2Int coordinates = new Vector2Int();
+
+        if(resetPath)
+        {
+            coordinates = pathfinder.StartCoordinates;
+        }
+        else
+        {
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
+        }
+        StopAllCoroutines();
         path.Clear();
-        path = pathfinder.GetNewPath();
+        path = pathfinder.GetNewPath(coordinates);
+        StartCoroutine(FollowPath());//Makes enemy wait for a certain length of time before each iteration of for loop
     }
 
     void ReturnToStart()
@@ -42,7 +53,7 @@ public class EnemyMover : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        for(int i =0; i<path.Count; i++)
+        for(int i = 1; i < path.Count; i++)
         {
             Vector3 startPosition = transform.position;
             Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
